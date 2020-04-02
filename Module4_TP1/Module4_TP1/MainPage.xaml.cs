@@ -21,30 +21,29 @@ namespace Module4_TP1
             InitializeComponent();
         }
 
-        private void Connexion_Clicked(object sender, EventArgs e)
+        private async void Connexion_Clicked(object sender, EventArgs e)
         {
             String Identifier = this.identifier.Text;
-            String Password = this.password.Text; 
+            String Password = this.password.Text;
             Boolean IsRemember = this.remember.IsToggled;
 
             this.error.IsVisible = false;
 
-            if (Connectivity.NetworkAccess != NetworkAccess.Internet) 
-            { 
-                this.error.Text = "Veuillez vous connecter à Internet"; 
-                this.error.IsVisible = true; 
-                return; 
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                this.error.Text = "Veuillez vous connecter à Internet";
+                this.error.IsVisible = true;
+                return;
             }
 
-            if (this.twitterService.authenticate(Identifier, Password)) 
-            { 
-                this.form.IsVisible = false; 
-                this.tweets.IsVisible = true;
-            } 
-            else 
-            { 
-                this.error.Text = "Identifiants incorrects"; 
-                this.error.IsVisible = true; 
+            if (this.twitterService.authenticate(Identifier, Password))
+            {
+                await Navigation.PushAsync(new TweetList());
+            }
+            else
+            {
+                this.error.Text = "Identifiants incorrects";
+                this.error.IsVisible = true;
             }
         }
     }

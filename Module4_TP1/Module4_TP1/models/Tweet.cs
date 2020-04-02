@@ -10,6 +10,29 @@ namespace Module4_TP1.models
         public string CreationDate { get; set; }
         public string UserName { get; set; }
         public string UserIdentifier { get; set; }
-        public string UserPseudo { get; set; }
+        public string Data { get; set; }
+
+        private string userImage;
+        public string UserImage
+        {
+            get
+            {
+                return "https://picsum.photos/50/50/?random";
+            }
+        }
+
+        private string userPseudo;
+        public string UserPseudo
+        {
+            get
+            {
+                return "@"+userPseudo;
+            }
+            set
+            {
+                userPseudo = value;
+            }
+        }
+
     }
 }
